@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent):
 {
     ui->setupUi(this);
 
+    tools = new SettingToolsUi(this);
+    tools->loadImagesIntoComboBox(ui->t01Braille, "C:/dev/Git/TransMathTool/image/t01Braille");
+
     const auto buttons = ui->stackedWidget->findChildren<QToolButton*>();
     for (QToolButton* button : buttons) button->hide();
 
@@ -52,6 +55,9 @@ MainWindow::MainWindow(QWidget *parent):
         grid->addWidget(inputA,       2, 0);
         grid->addWidget(inputB,       3, 0);
     }
+
+    const auto allWidgets = this->findChildren<QWidget*>();
+    for (QWidget *w : allWidgets) adjustFontSizes(w);
 }
 
 MainWindow::~MainWindow()
@@ -82,5 +88,24 @@ QString MainWindow::iconPath(const QString &fileName)
 void MainWindow::applyAutoSizeButton(QToolButton *button)
 {
     button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    button->setIconSize(QSize(64, 64)); // 초기 아이콘 사이즈. 부모 위젯에 따라 자동 확장
+    button->setIconSize(QSize(64, 64));
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    const auto allWidgets = this->findChildren<QWidget*>();
+    for (QWidget *w : allWidgets) adjustFontSizes(w);
+}
+
+void MainWindow::adjustFontSizes(QWidget *widget)
+{
+    int w = this->width();
+    int h = this->height();
+    int minDim = qMin(w, h);
+    fontSize = qMax(8, minDim / 40);
+    globalFont.setPointSize(fontSize);
+
+    if (qobject_cast<QPushButton*>(widget)) widget->setFont(globalFont);
+    if (qobject_cast<QComboBox*>(widget)) widget->setFont(globalFont);
 }

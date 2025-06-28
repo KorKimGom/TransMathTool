@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    settingtoolsui.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    settingtoolsui.h
 
 FORMS += \
     mainwindow.ui
@@ -25,5 +27,31 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     LeftArrow.svg \
+    MathExpressionParser.py \
     Reset.svg \
-    RightArrow.svg
+    RightArrow.svg \
+    image/t01Braille/A LSUB A.png \
+    image/t01Braille/A LSUB A.png \
+    image/t01Braille/A LSUP A.png \
+    image/t01Braille/A LSUP A.png \
+    image/t01Braille/A^A.png \
+    image/t01Braille/A_A.png \
+    image/t01Braille/A_LSUB_A.png \
+    image/t01Braille/A_LSUP_A.png \
+    image/t01Braille/UNDEROVER A_A^A.png \
+    image/t01Braille/UNDEROVER A_A^A.png \
+    image/t01Braille/UNDEROVER_A_A^A.png \
+    image/t02DecorativeSymbol/DDOT A.png \
+    image/t02DecorativeSymbol/DOT A.png \
+    image/t02DecorativeSymbol/acute A.png \
+    image/t02DecorativeSymbol/arch A.png \
+    image/t02DecorativeSymbol/bar A.png \
+    image/t02DecorativeSymbol/box A.png \
+    image/t02DecorativeSymbol/check A.png \
+    image/t02DecorativeSymbol/dyad A.png \
+    image/t02DecorativeSymbol/grave A.png \
+    image/t02DecorativeSymbol/hat A.png \
+    image/t02DecorativeSymbol/tilde A.png \
+    image/t02DecorativeSymbol/under A.png \
+    image/t02DecorativeSymbol/vec A.png \
+    image/t03Fountain/A1OverA2.png
