@@ -15,8 +15,8 @@ class SettingToolsUi : public QObject {
 
 public:
     explicit SettingToolsUi(QObject *parent = nullptr);
-
     void loadImagesIntoComboBox(QComboBox *comboBox, const QString &directoryPath);
+    void loadAllComboBoxImages(class MainWindow *mainWindow);
 };
 
 #endif // SETTINGTOOLSUI_H

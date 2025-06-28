@@ -8,7 +8,23 @@ MainWindow::MainWindow(QWidget *parent):
     ui->setupUi(this);
 
     tools = new SettingToolsUi(this);
-    tools->loadImagesIntoComboBox(ui->t01Braille, "C:/dev/Git/TransMathTool/image/t01Braille");
+    tools->loadAllComboBoxImages(this); // MainWindow 자체를 전달
+
+    std::vector<std::pair<QComboBox*, QString>> imageMappings = {
+        {ui->t01Braille,           ImageBasePath + "t01Braille"},
+        {ui->t02DecorativeSymbol,  ImageBasePath + "t02DecorativeSymbol"},
+        {ui->t05Sum,               ImageBasePath + "t05Sum"},
+        {ui->t06Integral,          ImageBasePath + "t06Integral"},
+        {ui->t07Extreme,           ImageBasePath + "t07Extreme"},
+        {ui->t10TheTransformationOfTheNumberOfDigits, ImageBasePath + "t10TheTransformationOfTheNumberOfDigits"},
+        {ui->t11Interrelationship, ImageBasePath + "t11Interrelationship"},
+        {ui->t12Parentheses,       ImageBasePath + "t12Parentheses"},
+        {ui->t15Procession,        ImageBasePath + "t15Procession"},
+        {ui->t20ChangeFormulaFormat, ImageBasePath + "t20ChangeFormulaFormat"}
+    };
+
+    for (const auto& [comboBox, path] : imageMappings)
+        tools->loadImagesIntoComboBox(comboBox, path);
 
     const auto buttons = ui->stackedWidget->findChildren<QToolButton*>();
     for (QToolButton* button : buttons) button->hide();

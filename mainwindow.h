@@ -12,6 +12,7 @@
 #include <QPushButton>
 #include <QComboBox>
 #include <QFont>
+#include <QString>
 #include <QTextEdit>
 #include <QWidget>
 
@@ -59,6 +60,7 @@ private:
 
     int fontSize; // 현재 폰트 크기 저장
     QFont globalFont; // 글로벌 폰트 저장
+    const QString ImageBasePath = "C:/dev/Git/TransMathTool/image/";
 };
 
 #endif // MAINWINDOW_H

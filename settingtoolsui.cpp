@@ -1,4 +1,5 @@
 #include "settingtoolsui.h"
+#include "mainwindow.h"
 
 SettingToolsUi::SettingToolsUi(QObject *parent) : QObject(parent) {}
 
@@ -44,4 +45,25 @@ void SettingToolsUi::loadImagesIntoComboBox(QComboBox *comboBox, const QString &
     //     comboBox->addItem(QIcon(files[i].absoluteFilePath()), "");
     for (auto it = fileList.constBegin(); it != fileList.constEnd(); ++it)  /** fileList.constBegin() ~ fileList.constEnd() 반복자 사용 **/
         comboBox->addItem(QIcon(it->absoluteFilePath()), "");
+}
+
+void SettingToolsUi::loadAllComboBoxImages(MainWindow *mainWindow) {
+    const QString base = "C:/dev/Git/TransMathTool/image/";
+
+    const std::vector<std::pair<QComboBox*, QString>> mappings = {
+        {mainWindow->findChild<QComboBox*>("t01Braille"),           base + "t01Braille"},
+        {mainWindow->findChild<QComboBox*>("t02DecorativeSymbol"),  base + "t01Braille"},
+        {mainWindow->findChild<QComboBox*>("t05Sum"),               base + "t01Braille"},
+        {mainWindow->findChild<QComboBox*>("t06Integral"),          base + "t06Integral"},
+        {mainWindow->findChild<QComboBox*>("t07Extreme"),           base + "t07Extreme"},
+        {mainWindow->findChild<QComboBox*>("t10TheTransformationOfTheNumberOfDigits"), base + "t01Braille"},
+        {mainWindow->findChild<QComboBox*>("t11Interrelationship"), base + "t11Interrelationship"},
+        {mainWindow->findChild<QComboBox*>("t12Parentheses"),       base + "t12Parentheses"},
+        {mainWindow->findChild<QComboBox*>("t15Procession"),        base + "t15Procession"},
+        {mainWindow->findChild<QComboBox*>("t20ChangeFormulaFormat"), base + "t20ChangeFormulaFormat"}
+    };
+
+    for (const auto& [combo, path] : mappings) {
+        if (combo) loadImagesIntoComboBox(combo, path);
+    }
 }
